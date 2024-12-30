@@ -5,6 +5,25 @@ The **Azure-NYC-Taxi-ETL-and-Analytics-Pipeline** is an end-to-end data engineer
 
 **Key Differentiator**: This project eliminates manual workflows by dynamically fetching data from APIs, automating pipelines with Azure Data Factory, and ensuring scalability with Delta Lake.
 
+## Architecture
+
+![Architecture Diagram](./architecture/nyc_taxi_etl.png) 
+
+### High-Level Architecture
+
+1. **Data Sources**: NYC Taxi trip data (Parquet format) and lookup files (manually uploaded CSV files).
+2. **Data Ingestion**:
+   - Built parameterized pipelines using Azure Data Factory to fetch data dynamically via API.
+   - Stored raw data in the **Bronze Layer** of Azure Data Lake Gen2.
+3. **Processing and Transformation**:
+   - Used Azure Databricks and PySpark to clean and transform data.
+   - Processed data through the Silver layer (structured and cleaned) and Gold layer (modeled for analytics).
+4. **Data Modeling and Storage**:
+   - Created Delta tables in the Gold layer for transactional support.
+   - Stored data in **Delta Lake** for versioning and ACID compliance.
+5. **Visualization**:
+   - Connected Delta tables with Power BI to build interactive dashboards.
+
 ---
 
 ## Data Source
@@ -32,25 +51,6 @@ The project utilizes the **NYC Taxi Trip Data**, provided by the NYC Taxi & Limo
 
 ---
 
-## Architecture
-### High-Level Architecture
-
-1. **Data Sources**: NYC Taxi trip data (Parquet format) and lookup files (manually uploaded CSV files).
-2. **Data Ingestion**:
-   - Built parameterized pipelines using Azure Data Factory to fetch data dynamically via API.
-   - Stored raw data in the **Bronze Layer** of Azure Data Lake Gen2.
-3. **Processing and Transformation**:
-   - Used Azure Databricks and PySpark to clean and transform data.
-   - Processed data through the Silver layer (structured and cleaned) and Gold layer (modeled for analytics).
-4. **Data Modeling and Storage**:
-   - Created Delta tables in the Gold layer for transactional support.
-   - Stored data in **Delta Lake** for versioning and ACID compliance.
-5. **Visualization**:
-   - Connected Delta tables with Power BI to build interactive dashboards.
-
-![Architecture Diagram](./architecture/nyc_taxi_etl.png)
-
----
 
 ## Key Features
 - **Automated Pipelines**:
